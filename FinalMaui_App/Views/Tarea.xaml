@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinalMaui_App.Views.Tarea"
+             Title="Tarea"
+             xmlns:viewmodels="clr-namespace:FinalMaui_App.ViewModels"
+             xmlns:model="clr-namespace:FinalMaui_App.Models"
+             x:DataType="viewmodels:TareaViewModel">
+    <ScrollView>
+            <VerticalStackLayout>
+        <Border>
+            <VerticalStackLayout>
+                <Entry x:Name="DescEntry" Text="{Binding Tarea.Description, Mode=TwoWay}"/>
+
+                <HorizontalStackLayout Margin="10">
+                    <DatePicker Margin="10" x:Name="DataPicker" Date="{Binding Tarea.Date}"/>
+                    <Border x:DataType="viewmodels:ProductoViewModel">
+                        <Picker
+                            HeightRequest="80"
+                            WidthRequest="500"
+                            Title="Select Product"
+                            ItemsSource="{Binding Productos}"
+                            ItemDisplayBinding="{Binding Producto.Name}">
+                        </Picker>
+                    </Border>
+                    <Label Margin="10" VerticalOptions="Center">Done</Label>
+                    <CheckBox IsChecked="{Binding Path=Tarea.Done, Mode=TwoWay}"/>
+                    <HorizontalStackLayout x:DataType="viewmodels:TareaViewModel">
+                        <Button Margin="10" Text="Add+" Command="{Binding AddTareasCommand}"/>
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <ListView
+            x:DataType="viewmodels:TareaViewModel"
+            VerticalScrollBarVisibility="Always"
+            ItemsSource="{Binding Tareas}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Tarea">
+                    <ViewCell>
+                        <Grid>
+                            <Border>
+                                <HorizontalStackLayout>
+                                    <Border WidthRequest="800">
+                                        <HorizontalStackLayout>
+                                            <VerticalStackLayout>
+                                                <Label Margin="10">ID:</Label>
+                                                <Label Margin="10" Text="{Binding Id}"/>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout>
+                                                <Label Margin="10">Description:</Label>
+                                                <Label Margin="10" Text="{Binding Description}"/>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout>
+                                                <Label Margin="10">Date:</Label>
+                                                <Label Text="{Binding Date}"/>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout>
+                                                <Label Margin="10">Status:</Label>
+                                                <Label Margin="10" Text="{Binding Done}"/>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout>
+                                                <Label Margin="10">Product:</Label>
+                                                <Label Margin="10" Text="{Binding ProducotId}"/>
+                                            </VerticalStackLayout>
+
+                                        </HorizontalStackLayout>
+                                    </Border>
+
+
+                                    <Button HeightRequest="30" WidthRequest="100" Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TareaViewModel}}, Path=DeleteTareaCommand}" CommandParameter="{Binding .}"></Button>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
