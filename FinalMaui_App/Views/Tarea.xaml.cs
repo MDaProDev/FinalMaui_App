@@ -9,4 +9,9 @@ public partial class Tarea : ContentPage
 		InitializeComponent();
 		BindingContext = new TareaViewModel();
 	}
+
+    private void GoBackBtn_Clicked(object? sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("..");
+    }
 }

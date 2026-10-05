@@ -12,7 +12,8 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
            <VerticalStackLayout>
-        <Border>
+            <Button x:Name="GoBackBtn" Text="Back" Clicked="GoBackBtn_Clicked"/>
+            <Border>
             <VerticalStackLayout>
                 <Entry x:Name="NameEntry" Text="{Binding Producto.Name, Mode=TwoWay}"/>
                 <Entry Keyboard="Numeric" Text="{Binding Producto.Price, Mode=TwoWay}"/>

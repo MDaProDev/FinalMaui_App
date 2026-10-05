@@ -15,8 +15,7 @@ namespace FinalMaui_App.Models
         public DateTime Date { get; set; }
         public bool Done { get; set; }
 
-        //La documentación de Sqlite-net sugiere crear relaciones entre tablas mediante Indexed
-        //Yo hubiese usado public List<Producto> productos { get; set; } 
+
         [Indexed]
         public int ProducotId { get; set; } 
 

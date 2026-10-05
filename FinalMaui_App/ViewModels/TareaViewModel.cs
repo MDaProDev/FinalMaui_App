@@ -48,30 +48,16 @@ namespace FinalMaui_App.ViewModels
 
         async Task AddTarea()
         {
+            
             if (string.IsNullOrEmpty(Tarea.Description))
             {
-                await AppShell.Current.DisplayAlert("Error", "Products require a name", "Ok");
+                await AppShell.Current.DisplayAlert("Error", "Tasks require a description", "Ok");
                 return;
             }
-            
-
-            //Este codigo debería obtener producto.Name etc mediante Entry en xaml usando Binding
-
-            //He intentado obtener el precio y stock mediante DisplayPromptAsync
-            //Pero este no acepta nada que no sea de tipo String
 
             try
             {
-                //var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name", "OK", "Cancel");
-
-
-                //await ProductoDbService.AddProducto(name, price, stock);
-
-                //var name = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Name", "Name", "OK", "Cancel");
-                //float price = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Price", "Price", "OK", "Cancel");
-                //int stock = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Stock", "Stock", "OK", "Cancel");
-
-
+ 
                 await ProductoDbService.AddTarea(Tarea.Description, Tarea.Date, Tarea.Done, Tarea.ProducotId);
                 await Refresh();
 
@@ -81,12 +67,6 @@ namespace FinalMaui_App.ViewModels
             {
                 await AppShell.Current.DisplayAlert("Error", ex.Message, "Ok");
             }
-
-
-
-
-            //await ProductoDbService.AddProducto(producto.Name, producto.Price, producto.Stock);
-
         }
 
         async Task Delete(Tarea tarea)
@@ -105,7 +85,7 @@ namespace FinalMaui_App.ViewModels
 
         async Task Refresh()
         {
-            //Este Task debería cargar los productos en la lista
+            
 
             if (isBusy) return;
             isBusy = true;

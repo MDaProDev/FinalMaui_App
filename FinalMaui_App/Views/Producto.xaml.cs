@@ -11,6 +11,9 @@ public partial class Producto : ContentPage
 		InitializeComponent();
 		BindingContext = new ProductoViewModel();
 	}
-	
-    
+
+    private void GoBackBtn_Clicked(object? sender, EventArgs e)
+    {
+		Shell.Current.GoToAsync("..");
+    }
 }

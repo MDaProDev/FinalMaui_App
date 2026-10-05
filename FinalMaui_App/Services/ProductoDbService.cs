@@ -20,7 +20,7 @@ namespace FinalMaui_App.Services
             db = new SQLiteAsyncConnection(dbPath);
 
             await db.CreateTableAsync<Producto>();
-            //Añádí este createTable pero no he llegado a confirmar se ha sido creada correctamente
+
             await db.CreateTableAsync<Tarea>();
         }
 
@@ -54,7 +54,7 @@ namespace FinalMaui_App.Services
         public static async Task AddTarea(string description, DateTime date, bool done, int productoId)
         {
             await Init();
-            var product = new Tarea
+            var tarea = new Tarea
             {
                 Description = description,
                 Date = date,
@@ -62,9 +62,22 @@ namespace FinalMaui_App.Services
                 ProducotId = productoId
             };
 
-            await db.InsertAsync(product);
+            await db.InsertAsync(tarea);
 
         }
+        public static async Task UpdateTarea(string description, DateTime date, bool done, int productoId)
+        {
+            await Init();
+            var tarea = new Tarea
+            {
+                Description = description,
+                Date = date,
+                Done = done,
+                ProducotId = productoId
+            };
+            await db.UpdateAsync(tarea);
+        }
+
         public static async Task DeleteTarea(int id)
         {
             await Init();
