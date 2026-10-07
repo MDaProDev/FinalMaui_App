@@ -60,22 +60,8 @@ namespace FinalMaui_App.ViewModels
                 return;
             }
 
-            //Este codigo debería obtener producto.Name etc mediante Entry en xaml usando Binding
-            
-            //He intentado obtener el precio y stock mediante DisplayPromptAsync
-            //Pero este no acepta nada que no sea de tipo String
-
             try
             {
-                //var name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name", "OK", "Cancel");
-
-
-            //await ProductoDbService.AddProducto(name, price, stock);
-
-            //var name = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Name", "Name", "OK", "Cancel");
-            //float price = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Price", "Price", "OK", "Cancel");
-            //int stock = await App.Current.Windows?.FirstOrDefault()?.Page.DisplayPromptAsync("Stock", "Stock", "OK", "Cancel");
-
 
                 await ProductoDbService.AddProducto(Producto.Name, Producto.Price, Producto.Stock);
                 await Refresh();
