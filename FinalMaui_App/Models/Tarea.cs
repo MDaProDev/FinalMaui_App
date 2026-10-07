@@ -18,7 +18,7 @@ namespace FinalMaui_App.Models
         //La documentación de Sqlite-net sugiere crear relaciones entre tablas mediante Indexed
         //Yo hubiese usado public List<Producto> productos { get; set; } 
         [Indexed]
-        public int ProducotId { get; set; } 
+        public int ProductoId { get; set; } 
 
 
     }
